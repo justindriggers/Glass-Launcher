@@ -5,6 +5,8 @@ Glass Launcher is a simple application launcher for Google Glass.
 
 The goal of Glass Launcher is to make Google Glass a more practical device for the average user.
 
+![Flow Model for Glass Launcher](http://i.imgur.com/8tJRCRj.png)
+
 Why should I use this over other application launchers?
 There are currently two other solutions for launching applications. One of them involves installing the AOSP Launcher2 APK, which is designed for typical Android devices, making it difficult to use on Google Glass. The other intercepts an event and starts its own activity in place of the normal Settings activity.
 Recently, Google allowed developers access to the Glass Development Kit (GDK), allowing deeper access into the platform's APIs. Glass Launcher is built with the GDK and gives the user a truly native feel when launching an application.
