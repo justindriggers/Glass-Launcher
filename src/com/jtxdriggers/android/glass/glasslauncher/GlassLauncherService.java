@@ -148,14 +148,14 @@ public class GlassLauncherService extends Service {
 	    if (mLiveCard == null) {
 	        String cardId = "glass_launcher";
 	        TimelineManager tm = TimelineManager.from(context);
-	        mLiveCard = tm.getLiveCard(cardId);
+	        mLiveCard = tm.createLiveCard(cardId);
 	
 	        mLiveCard.setViews(new RemoteViews(context.getPackageName(),
 	                R.layout.glasslauncher_layout));
 	        Intent intent = new Intent(context, MenuActivity.class);
 	        mLiveCard.setAction(PendingIntent.getActivity(context, 0,
 	                intent, 0));
-	        mLiveCard.publish();
+	        mLiveCard.publish(null);
 	    } else {
 	        // Card is already published.
 	        return;
