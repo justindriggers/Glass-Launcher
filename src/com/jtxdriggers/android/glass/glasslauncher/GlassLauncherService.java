@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.android.glass.timeline.LiveCard;
-import com.google.android.glass.timeline.LiveCard.PublishMode;
-import com.google.android.glass.timeline.TimelineManager;
-
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -38,12 +34,17 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.widget.RemoteViews;
 
+import com.google.android.glass.timeline.LiveCard;
+import com.google.android.glass.timeline.LiveCard.PublishMode;
+import com.google.android.glass.timeline.TimelineManager;
+
 public class GlassLauncherService extends Service {
 	
 	private final IBinder mBinder = new GlassLauncherBinder();
 	private final BroadcastReceiver mApplicationsReceiver = new ApplicationsIntentReceiver();
 	
     private static ArrayList<ApplicationInfo> mApplications;
+    private static ArrayList<String> mPackages;
     
 	private LiveCard mLiveCard;
 
@@ -104,26 +105,41 @@ public class GlassLauncherService extends Service {
 
             if (mApplications == null) {
                 mApplications = new ArrayList<ApplicationInfo>(count);
+                mPackages = new ArrayList<String>(count);
             }
             mApplications.clear();
 
-            for (int i = 0; i < count; i++) {
+            for (int i = -1; i < count; i++) {
                 ApplicationInfo application = new ApplicationInfo();
-                ResolveInfo info = apps.get(i);
-                
-                if (info.activityInfo.applicationInfo.packageName.equals("com.google.glass.home") ||
-                		info.activityInfo.applicationInfo.packageName.equals(getPackageName())) {
-                	continue;
+
+                if (i == -1) {
+                	application.title = "Search Apps";
+                    application.setActivity(new ComponentName(
+                            "com.jtxdriggers.android.glass.glasslauncher",
+                            "com.jtxdriggers.android.glass.glasslauncher.GlassLauncherSearch"),
+                            Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    application.icon = getResources().getDrawable(R.drawable.launcher);
                 }
-
-                application.title = info.loadLabel(manager);
-                application.setActivity(new ComponentName(
-                        info.activityInfo.applicationInfo.packageName,
-                        info.activityInfo.name),
-                        Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                application.icon = info.activityInfo.loadIcon(manager);
-
+                else {
+                	ResolveInfo info = apps.get(i);
+                    
+                    if (info.activityInfo.applicationInfo.packageName.equals("com.google.glass.home") ||
+                    		info.activityInfo.applicationInfo.packageName.equals(getPackageName())) {
+                    	continue;
+                    }
+                    
+                	application.title = info.loadLabel(manager);
+                    application.setActivity(new ComponentName(
+                            info.activityInfo.applicationInfo.packageName,
+                            info.activityInfo.name),
+                            Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    application.icon = info.activityInfo.loadIcon(manager);
+                    
+                    mPackages.add(info.activityInfo.applicationInfo.packageName);
+                }
+                
                 mApplications.add(application);
             }
         }
@@ -133,6 +149,10 @@ public class GlassLauncherService extends Service {
     
     public static ArrayList<ApplicationInfo> getApplications() {
     	return mApplications;
+    }
+    
+    public static ArrayList<String> getPackages() {
+    	return mPackages;
     }
 
     /**

@@ -79,11 +79,20 @@ public class MenuActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == -1) {
+		int itemid = item.getItemId();
+		Intent intent;
+		
+		if (itemid == -1) {
 			return true;
 		}
+		else if (item.getItemId() == 0) {
+			intent = new Intent();
+			intent.setClassName("com.jtxdriggers.android.glass.glasslauncher", "com.jtxdriggers.android.glass.glasslauncher.GlassLauncherSearch");
+		}
+		else {
+			intent = mApplications.get(itemid).intent;
+		}
 		
-		Intent intent = mApplications.get(item.getItemId()).intent;
 		startActivity(intent);
 		
 		return true;
