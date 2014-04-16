@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.google.android.glass.timeline.LiveCard;
 import com.google.android.glass.timeline.LiveCard.PublishMode;
-import com.google.android.glass.timeline.TimelineManager;
+import com.google.android.glass.timeline.*;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -148,8 +148,7 @@ public class GlassLauncherService extends Service {
     private void publishCard(Context context) {
 	    if (mLiveCard == null) {
 	        String cardId = "glass_launcher";
-	        TimelineManager tm = TimelineManager.from(context);
-	        mLiveCard = tm.createLiveCard(cardId);
+	        mLiveCard = new LiveCard(context, cardId);
 	
 	        mLiveCard.setViews(new RemoteViews(context.getPackageName(),
 	                R.layout.glasslauncher_layout));
