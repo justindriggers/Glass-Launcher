@@ -48,7 +48,14 @@ public class MenuActivity extends Activity {
 	public void onResume() {
 	    super.onResume();
 	    
+	    //openOptionsMenu();
+	}
+	
+	@Override
+	public void onAttachedToWindow()
+	{
 	    openOptionsMenu();
+
 	}
 	
 	@Override

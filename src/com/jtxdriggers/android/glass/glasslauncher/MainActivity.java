@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 		card.setText("Welcome! You can now select Glass Launcher to the left of the time card. You can close this screen at any time.");
 		card.setFootnote(R.string.app_name);
 		
-		setContentView(card.toView());
+		setContentView(card.getView());
 		
 		startService(new Intent(this, GlassLauncherService.class));
 	}
