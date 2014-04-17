@@ -43,12 +43,12 @@ public class MenuActivity extends Activity {
 	    mApplications = GlassLauncherService.getApplications();
 		
 	}
-
+	
 	@Override
-	public void onResume() {
-	    super.onResume();
-	    
-	    openOptionsMenu();
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		
+		openOptionsMenu();
 	}
 	
 	@Override
