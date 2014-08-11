@@ -1,7 +1,8 @@
 Glass Launcher
 ===========
 
-This is a fork of the fantastic Glass Launcher by [justindriggers](https://github.com/justindriggers/Glass-Launcher). This version allows the user to pick an app just by saying its name, in addition to the existing scroll functionality.
+This is a fork of the fantastic Glass Launcher by [justindriggers](https://github.com/justindriggers/Glass-Launcher).
+This version allows the user to pick an app just by saying its name, in addition to the existing scroll functionality.
 
 To install, download the .apk file and type in: ```adb install GlassLauncher.apk```
 Then, to run, type in: ```adb shell am start com.jtxdriggers.android.glass.glasslauncher/.MainActivity```
@@ -18,9 +19,7 @@ Recently, Google allowed developers access to the Glass Development Kit (GDK), a
 
 Use of this source code assumes that you know how to build and install applications to your Google Glass device. To install, simply build and run as you would any other application. After starting the first time, the service will start on each boot, creating a Glass Launcher card to the left of the Time card.
 
-Building this application requires the Android SDK, with both the Android 4.0.3 SDK Platform (API 15) and the Glass Development Kit Sneap Peek installed.
-
-Copyright 2013 Justin Driggers
+Building this application requires the Android SDK, with both the Android 4.4 SDK Platform (API 19) and the Glass Development Kit Preview installed.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
