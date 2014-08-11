@@ -4,8 +4,9 @@ Glass Launcher
 This is a fork of the fantastic Glass Launcher by [justindriggers](https://github.com/justindriggers/Glass-Launcher).
 This version allows the user to pick an app just by saying its name, in addition to the existing scroll functionality.
 
-To install, download the .apk file and type in: ```adb install GlassLauncher.apk```
+To install: download the .apk file, plug in Glass, and type this into a terminal or command line: ```adb install GlassLauncher.apk```
 Then, to run, type in: ```adb shell am start com.jtxdriggers.android.glass.glasslauncher/.MainActivity```
+To uninstall: plug in Glass, and type this into a command line: ```adb uninstall com.jtxdriggers.android.glass.glasslauncher```
 
 Glass Launcher is a simple application launcher for Google Glass.
 
