@@ -1,5 +1,1 @@
-/assets
-/bin
-/gen
-/libs
-/.settings
+build/

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="frej">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/frej.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
